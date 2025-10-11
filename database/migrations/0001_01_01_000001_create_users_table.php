@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->string('alamat')->nullable();
-            $table->foreignId('id_poli')->nullable()->constrained('poli')->cascadeOnDelete();
+            $table->string('id_poli')->nullable()->constrained('poli')->cascadeOnDelete();
             $table->string('no_ktp')->nullable();
             $table->string('no_hp')->nullable();
             $table->string('no_rm', 25)->nullable();
@@ -25,8 +25,22 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
-    }
 
+        Schema::create('password_reset_tokens', function (Blueprint $table) {
+            $table->string('email')->primary();
+            $table->string('token');
+            $table->timestamp('created_at')->nullable();
+        });
+
+        Schema::create('sessions', function (Blueprint $table) {
+            $table->string('id')->primary();
+            $table->foreignId('user_id')->nullable()->index();
+            $table->string('ip_address', 45)->nullable();
+            $table->text('user_agent')->nullable();
+            $table->longText('payload');
+            $table->integer('last_activity')->index();
+        });
+    }
 
     /**
      * Reverse the migrations.

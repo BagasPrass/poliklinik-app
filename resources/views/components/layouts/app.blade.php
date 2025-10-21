@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $title ?? 'Admin Dashboard' }}</title>
     {{-- <link rel="stylesheet" href="{{ mix('css/app.css') }}"> --}}
-    @vite(['resources/js/app.js', 'resources/css/app.css'])
+    @vite(['resources/js/app.js', 'resources/css/tables.css', 'resources/css/app.css'])
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.2/css/all.min.css"
         integrity="sha512-Evv84MRk4kQvQn4sGLGL/fA1DbQdJbxCQCrovdxJflShS8CSRPBFeakCR5k+w/U6S2lW1nVuXk/S9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" /> salah--}}

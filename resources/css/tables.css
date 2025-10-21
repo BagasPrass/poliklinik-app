@@ -1,0 +1,78 @@
+/* === General Table Styles === */
+.table {
+    border-collapse: separate !important;
+    border-spacing: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    font-size: 15px;
+}
+
+.table th,
+.table td {
+    vertical-align: middle;
+    padding: 12px 16px;
+}
+
+.table thead {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.table th {
+    font-weight: 600;
+    color: #495057;
+}
+
+.table tbody tr:hover {
+    background-color: #f5f8fa;
+    transition: background 0.2s ease-in-out;
+}
+
+/* === Button Styles === */
+.btn {
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    border: none;
+    color: #212529;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+    color: #fff;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #bb2d3b;
+}
+
+/* === Alert Styles === */
+.alert {
+    border-radius: 6px;
+    margin-bottom: 16px;
+}
+
+/* === Responsive Table === */
+@media (max-width: 768px) {
+    .table th,
+    .table td {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .btn {
+        font-size: 13px;
+        padding: 6px 10px;
+    }
+}

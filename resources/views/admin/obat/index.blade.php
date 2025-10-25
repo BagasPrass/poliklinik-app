@@ -1,4 +1,4 @@
-<x-layouts.app title="Data Poli">
+<x-layouts.app title="Data Obat">
     <div class="container-fluid px-4 mt-4">
         <div class="row">
             <div class="col-lg-12">
@@ -13,10 +13,10 @@
 
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h1 class="h3 fw-bold text-primary mb-0">
-                        <i class="fas fa-hospital me-2"></i>Data Poli
+                        <i class="fas fa-pills me-2"></i>Data Obat
                     </h1>
-                    <a href="{{ route('polis.create') }}" class="btn btn-primary shadow-sm">
-                        <i class="fas fa-plus me-1"></i> Tambah Poli
+                    <a href="{{ route('obat.create') }}" class="btn btn-primary shadow-sm">
+                        <i class="fas fa-plus me-1"></i> Tambah Obat
                     </a>
                 </div>
 
@@ -27,29 +27,31 @@
                                 <thead class="table-light border-bottom text-center">
                                     <tr>
                                         <th style="width: 5%">No</th>
-                                        <th>Nama Poli</th>
-                                        <th>Keterangan</th>
+                                        <th>Nama Obat</th>
+                                        <th>Kemasan</th>
+                                        <th>Harga</th>
                                         <th style="width: 15%">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($polis as $index => $poli)
+                                    @forelse ($obats as $index => $obat)
                                         <tr>
                                             <td class="text-center fw-semibold">{{ $index + 1 }}</td>
                                             <td>
-                                                <i class="text-secondary me-2"></i>{{ $poli->nama_poli }}
+                                                <i class="text-secondary me-2"></i>{{ $obat->nama_obat }}
                                             </td>
-                                            <td>{{ $poli->keterangan ?? '-' }}</td>
+                                            <td>{{ $obat->kemasan ?? '-' }}</td>
+                                            <td>Rp {{ number_format($obat->harga ?? 0, 0, ',', '.') }}</td>
                                             <td class="text-center">
                                                 <div class="d-flex justify-content-center gap-2">
-                                                    <a href="{{ route('polis.edit', $poli->id) }}" class="btn btn-sm btn-warning shadow-sm">
+                                                    <a href="{{ route('obat.edit', $obat->id) }}" class="btn btn-sm btn-warning shadow-sm">
                                                         <i class="fas fa-edit"></i>
                                                     </a>
-                                                    <form action="{{ route('polis.destroy', $poli->id) }}" method="POST" class="d-inline">
+                                                    <form action="{{ route('obat.destroy', $obat->id) }}" method="POST" class="d-inline">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-sm btn-danger shadow-sm"
-                                                            onclick="return confirm('Yakin ingin menghapus poli ini?')">
+                                                            onclick="return confirm('Yakin ingin menghapus obat ini?')">
                                                             <i class="fas fa-trash"></i>
                                                         </button>
                                                     </form>
@@ -58,8 +60,8 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="4" class="text-center text-muted py-4">
-                                                <i class="fas fa-exclamation-circle me-2"></i>Belum ada data poli.
+                                            <td colspan="5" class="text-center text-muted py-4">
+                                                <i class="fas fa-exclamation-circle me-2"></i>Belum ada data obat.
                                             </td>
                                         </tr>
                                     @endforelse

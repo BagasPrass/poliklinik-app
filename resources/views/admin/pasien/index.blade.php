@@ -1,4 +1,4 @@
-<x-layouts.app title="Data Poli">
+<x-layouts.app title="Data Pasien">
     <div class="container-fluid px-4 mt-4">
         <div class="row">
             <div class="col-lg-12">
@@ -13,10 +13,10 @@
 
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h1 class="h3 fw-bold text-primary mb-0">
-                        <i class="fas fa-hospital me-2"></i>Data Poli
+                        <i class="fas fa-users me-2"></i>Data Pasien
                     </h1>
-                    <a href="{{ route('polis.create') }}" class="btn btn-primary shadow-sm">
-                        <i class="fas fa-plus me-1"></i> Tambah Poli
+                    <a href="{{ route('pasien.create') }}" class="btn btn-primary shadow-sm">
+                        <i class="fas fa-plus me-1"></i> Tambah Pasien
                     </a>
                 </div>
 
@@ -27,29 +27,35 @@
                                 <thead class="table-light border-bottom text-center">
                                     <tr>
                                         <th style="width: 5%">No</th>
-                                        <th>Nama Poli</th>
-                                        <th>Keterangan</th>
+                                        <th>Nama Pasien</th>
+                                        <th>Email</th>
+                                        <th>No KTP</th>
+                                        <th>No HP</th>
+                                        <th>Alamat</th>
                                         <th style="width: 15%">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($polis as $index => $poli)
+                                    @forelse ($pasiens as $index => $pasien)
                                         <tr>
                                             <td class="text-center fw-semibold">{{ $index + 1 }}</td>
                                             <td>
-                                                <i class="text-secondary me-2"></i>{{ $poli->nama_poli }}
+                                                <i class="text-secondary me-2"></i>{{ $pasien->nama }}
                                             </td>
-                                            <td>{{ $poli->keterangan ?? '-' }}</td>
+                                            <td>{{ $pasien->email ?? '-' }}</td>
+                                            <td>{{ $pasien->no_ktp ?? '-' }}</td>
+                                            <td>{{ $pasien->no_hp ?? '-' }}</td>
+                                            <td>{{ $pasien->alamat ?? '-' }}</td>
                                             <td class="text-center">
                                                 <div class="d-flex justify-content-center gap-2">
-                                                    <a href="{{ route('polis.edit', $poli->id) }}" class="btn btn-sm btn-warning shadow-sm">
+                                                    <a href="{{ route('pasien.edit', $pasien->id) }}" class="btn btn-sm btn-warning shadow-sm">
                                                         <i class="fas fa-edit"></i>
                                                     </a>
-                                                    <form action="{{ route('polis.destroy', $poli->id) }}" method="POST" class="d-inline">
+                                                    <form action="{{ route('pasien.destroy', $pasien->id) }}" method="POST" class="d-inline">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-sm btn-danger shadow-sm"
-                                                            onclick="return confirm('Yakin ingin menghapus poli ini?')">
+                                                            onclick="return confirm('Yakin ingin menghapus pasien ini?')">
                                                             <i class="fas fa-trash"></i>
                                                         </button>
                                                     </form>
@@ -58,8 +64,8 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="4" class="text-center text-muted py-4">
-                                                <i class="fas fa-exclamation-circle me-2"></i>Belum ada data poli.
+                                            <td colspan="7" class="text-center text-muted py-4">
+                                                <i class="fas fa-exclamation-circle me-2"></i>Belum ada data pasien.
                                             </td>
                                         </tr>
                                     @endforelse

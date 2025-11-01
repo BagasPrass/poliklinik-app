@@ -40,11 +40,22 @@ class AuthController extends Controller
             'password' => ['required', 'confirmed'],
         ]);
 
+        // Generate Nomor Rekam Medis otomatis dengan format: YYYYMM-XXXX
+        $yearMonth = date('Ym'); 
+
+        $countThisMonth = User::where('role', 'pasien')
+            ->where('no_rm', 'LIKE', $yearMonth . '-%')
+            ->count();
+
+        $sequential = str_pad($countThisMonth + 1, 4, '0', STR_PAD_LEFT);
+        $no_rm = $yearMonth . '-' . $sequential;
+
         User::create([
             'nama' => $request->nama,
             'alamat' => $request->alamat,
             'no_ktp' => $request->no_ktp,
             'no_hp' => $request->no_hp,
+            'no_rm' => $no_rm,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role' => 'pasien'
